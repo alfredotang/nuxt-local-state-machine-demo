@@ -7,7 +7,9 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "analyze": "ANALYZE=true nuxt build"
+    "analyze": "ANALYZE=true nuxt build",
+    "test": "jest --runInBand",
+    "test_watch": "jest --watch"
   },
   "dependencies": {
     "@nuxtjs/composition-api": "^0.31.0",
@@ -19,9 +21,16 @@
     "nuxt": "^2.15.7"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.16.7",
+    "@babel/plugin-proposal-pipeline-operator": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
     "@types/lodash": "^4.14.178",
-    "@types/moment": "^2.13.0"
+    "@types/moment": "^2.13.0",
+    "babel-jest": "^27.4.5",
+    "jest": "^27.4.5"
   }
 }
