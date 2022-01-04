@@ -1,7 +1,6 @@
 import { mappingContext, isEmptyObject } from '~/helpers/stateMachine/utils'
 import createMutations from '~/helpers/stateMachine/core/createMutations'
 import createGetters from '~/helpers/stateMachine/core/createGetters'
-// @ts-check
 import createActions from '~/helpers/stateMachine/core/createActions'
 
 function createStateMachine(options, injectContext = null) {
