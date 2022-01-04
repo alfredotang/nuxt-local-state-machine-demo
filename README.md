@@ -66,3 +66,5 @@ components/pages/use-composition-api
     │   └── index.js -> 💡 執行 init function
     └── index.vue
 ```
+## webpack analyze
+![webpack analyze](./md/webpack-analyze.png)
