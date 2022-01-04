@@ -66,5 +66,8 @@ components/pages/use-composition-api
     │   └── index.js -> 💡 執行 init function
     └── index.vue
 ```
+
+## `fakers`
+存放假資料的 folder
 ## webpack analyze
 ![webpack analyze](./md/webpack-analyze.png)
