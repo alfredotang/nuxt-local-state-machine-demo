@@ -1,26 +1,35 @@
 /**
  * @param {string} target actions | getters
  */
-function mappingContext({ target, baseContext, injectContext = {} }) {
-  const vuexContext = mappingInjectContextWithVuex(injectContext)
+function mappingContext({ target, baseContext, injectOptions = {} }) {
+  const injectContext = mappingInjectContext(injectOptions || {})
 
   return {
     ...baseContext,
-    ...vuexContext[target],
+    ...injectContext[target],
   }
 }
 
-function mappingInjectContextWithVuex(injectContext) {
-  if (!injectContext || isEmptyObject(injectContext)) return { actions: {}, getters: {} }
+function mappingInjectContext({ contextFrom, injectContext }) {
+  const injectContextDictionary = { vuex: {} }
+  const injectContextDictionaryKey = Object.keys(injectContextDictionary)
+  if (!contextFrom || !injectContextDictionaryKey.includes(contextFrom)) return {}
+  if (isEmptyObject(injectContext)) return {}
 
-  const { rootState, rootGetters, rootDispatch } = injectContext
+  injectContextDictionary.vuex = { ...mappingVuexContext(injectContext) }
+
+  return injectContextDictionary[contextFrom]
+}
+
+function mappingVuexContext(injectContext) {
+  const { rootState, rootGetters, rootDispatch } = injectContext || {}
 
   const commonInjectContext = {
     rootState,
     rootGetters,
   }
 
-  const injectContextDictionary = {
+  return {
     actions: {
       ...commonInjectContext,
       rootDispatch,
@@ -29,8 +38,6 @@ function mappingInjectContextWithVuex(injectContext) {
       ...commonInjectContext,
     },
   }
-
-  return injectContextDictionary
 }
 
 function isGlobalStoreMethod(name) {
@@ -49,4 +56,4 @@ function omit(obj, key) {
   return rest
 }
 
-export { omit, isEmptyObject, isGlobalStoreMethod, mappingInjectContextWithVuex, mappingContext }
+export { omit, isEmptyObject, isGlobalStoreMethod, mappingInjectContext, mappingContext, mappingVuexContext }

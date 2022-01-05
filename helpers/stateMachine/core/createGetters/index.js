@@ -5,9 +5,9 @@ class CreateMethods {
     this.init()
   }
   init() {
-    const { state, rootState, rootGetters } = this._context
+    this._context.getters = this
     this._methods.forEach(method => {
-      this[method] = this._initialGetters[method](state, this, rootState, rootGetters)
+      this[method] = this._initialGetters[method]({ ...this._context })
     })
   }
 

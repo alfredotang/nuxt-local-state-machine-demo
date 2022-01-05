@@ -3,22 +3,26 @@ import createMutations from '~/helpers/stateMachine/core/createMutations'
 import createGetters from '~/helpers/stateMachine/core/createGetters'
 import createActions from '~/helpers/stateMachine/core/createActions'
 
-function createStateMachine(options, injectContext = null) {
+/**
+ * @param options { initialState, initialActions, initialMutations, initialGetters }
+ * @param injectOptions { contextFrom, injectContext }
+ */
+function createStateMachine(options, injectOptions = {}) {
   const { initialState, initialActions = null, initialMutations = {}, initialGetters = null } = options
 
   if (isEmptyObject(initialState)) throw new Error(`'state' is a required option for createStateMachine`)
   const { state, commit } = createMutations(initialState, initialMutations)
 
-  const gettersBaseContext = mappingContext({ target: 'getters', baseContext: { state }, injectContext })
+  const gettersContext = mappingContext({ target: 'getters', baseContext: { state }, injectOptions })
 
-  const { getters } = createGetters(initialGetters, gettersBaseContext)
+  const { getters } = createGetters(initialGetters, gettersContext)
 
-  const actionsBaseContext = mappingContext({
+  const actionsContext = mappingContext({
     target: 'actions',
     baseContext: { state, commit, getters },
-    injectContext,
+    injectOptions,
   })
-  const { actions } = createActions(initialActions, actionsBaseContext, injectContext)
+  const { actions } = createActions(initialActions, actionsContext)
 
   const machine = { state }
 

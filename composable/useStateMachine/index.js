@@ -21,7 +21,7 @@ function useStateMachine({
     initialMutations,
   }
 
-  const machine = createStateMachine(options, injectContext)
+  const machine = createStateMachine(options, { injectContext, contextFrom: 'vuex' })
   const state = machine.state
   const getters = machine.getters ? machine.getters : {}
   const actions = machine.actions ? machine.actions : {}
