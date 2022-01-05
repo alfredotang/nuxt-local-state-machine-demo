@@ -9,11 +9,11 @@ export const state = () => ({
 })
 
 export const getters = {
-  now: state => state.now,
-  data: state => state.data,
-  pageName: state => state.pageName,
-  pageNameX: (state, getters) => getters.pageName + 'X',
-  pageNameXY: (state, getters, rootState, rootGetters) => rootGetters['world/pageNameXY'],
+  now: ({ state }) => state.now,
+  data: ({ state }) => state.data,
+  pageName: ({ state }) => state.pageName,
+  pageNameX: ({ state, getters }) => getters.pageName + '-X-[form-local-state-machine]',
+  pageNameXY: ({ state, getters, rootState, rootGetters }) => rootGetters['world/pageNameXY'],
 }
 
 const actions = {
