@@ -27,7 +27,6 @@
     "@babel/plugin-proposal-pipeline-operator": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
     "@nuxt/types": "^2.15.7",
-    "@nuxt/typescript-build": "^2.1.0",
     "@types/lodash": "^4.14.178",
     "@types/moment": "^2.13.0",
     "babel-jest": "^27.4.5",
