@@ -1,4 +1,4 @@
-import { isGlobalStoreMethod, isEmptyObject, omit } from '~/helpers/stateMachine/utils'
+import { isGlobalStoreMethod, isEmptyObject, mappingContext } from '~/helpers/stateMachine/utils'
 
 function createActionsDispatch(actions, context) {
   const { rootDispatch } = context
@@ -12,13 +12,16 @@ function createActionsDispatch(actions, context) {
   }
 }
 
-/**
- * @param context { state, commit } || { state, commit, rootState, rootGetters, rootDispatch }
- */
-function createActions(initialActions, context) {
+function createActions({ initialActions, baseContext, injectOptions }) {
   if (!initialActions) {
     return { actions: null }
   }
+
+  const context = mappingContext({
+    target: 'actions',
+    baseContext,
+    injectOptions,
+  })
 
   const actions = {}
   const actionNames = Object.keys(initialActions)

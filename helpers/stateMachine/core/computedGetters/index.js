@@ -1,3 +1,4 @@
+import { mappingContext } from '~/helpers/stateMachine/utils'
 class CreateMethods {
   constructor(initialGetters, context) {
     this._context = context
@@ -16,19 +17,18 @@ class CreateMethods {
   }
 }
 
-/**
- * @param context { state } or { state, rootState, rootGetters }
- */
-function createGetters(initialGetters, context) {
+function computedGetters({ initialGetters, baseContext, injectOptions }) {
   if (!initialGetters) {
     return { getter: null }
   }
+
+  const context = mappingContext({ target: 'getters', baseContext, injectOptions })
 
   const getters = new CreateMethods(initialGetters, context)
 
   return { getters }
 }
 
-export { CreateMethods, createGetters }
+export { CreateMethods, computedGetters }
 
-export default createGetters
+export default computedGetters
