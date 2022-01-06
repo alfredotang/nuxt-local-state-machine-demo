@@ -13,7 +13,7 @@ function createActionsDispatch(actions, context) {
 }
 
 function createActions({ initialActions, baseContext, injectOptions }) {
-  if (!initialActions) {
+  if (isEmptyObject(initialActions)) {
     return { actions: null }
   }
 
