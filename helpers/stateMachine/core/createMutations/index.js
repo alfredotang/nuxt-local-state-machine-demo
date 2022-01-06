@@ -16,8 +16,9 @@ function createNextState(initialState, mutations, action) {
 
 function createMutations({ initialState, initialMutations, initialGetters, injectOptions }) {
   const stateKeys = Object.keys(initialState)
+  const state = { ...initialState }
   const getterKeys = Object.keys(initialGetters)
-  const { getters } = computedGetters({ initialGetters, baseContext: { state: initialState }, injectOptions })
+  const { getters } = computedGetters({ initialGetters, baseContext: { state }, injectOptions })
   if (isEmptyObject(initialMutations)) {
     return {
       state: initialState,
@@ -29,11 +30,12 @@ function createMutations({ initialState, initialMutations, initialGetters, injec
   }
 
   function commit(type, payload = null) {
-    const nextState = createNextState(initialState, initialMutations, { type, payload })
+    const nextState = createNextState(state, initialMutations, { type, payload })
     stateKeys.forEach(key => {
-      initialState[key] = nextState[key]
+      state[key] = nextState[key]
     })
-    if (!getters) return
+
+    if (isEmptyObject(initialGetters)) return
     const { getters: nextGetters } = computedGetters({
       initialGetters,
       baseContext: { state: nextState },
@@ -44,7 +46,7 @@ function createMutations({ initialState, initialMutations, initialGetters, injec
     })
   }
 
-  return { state: initialState, commit, getters }
+  return { state, commit, getters }
 }
 
 export { createNextState, createMutations }

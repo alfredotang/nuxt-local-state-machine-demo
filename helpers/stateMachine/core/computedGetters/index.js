@@ -1,4 +1,4 @@
-import { mappingContext } from '~/helpers/stateMachine/utils'
+import { mappingContext, isEmptyObject } from '~/helpers/stateMachine/utils'
 class CreateMethods {
   constructor(initialGetters, context) {
     this._context = context
@@ -8,7 +8,7 @@ class CreateMethods {
   init() {
     this._context.getters = this
     this._methods.forEach(method => {
-      this[method] = this._initialGetters[method]({ ...this._context })
+      this[method] = (() => this._initialGetters[method]({ ...this._context }))()
     })
   }
 
@@ -18,8 +18,8 @@ class CreateMethods {
 }
 
 function computedGetters({ initialGetters, baseContext, injectOptions }) {
-  if (!initialGetters) {
-    return { getter: null }
+  if (isEmptyObject(initialGetters)) {
+    return { getter: {} }
   }
 
   const context = mappingContext({ target: 'getters', baseContext, injectOptions })
