@@ -54,11 +54,13 @@ helpers
         └── index.test.js
 ```
 
-## `component` & `composition-api` demo
+## `file structure`
 若 component 要使用 `composition-api`，在 component folder 下會有一個 `composable` folder 來放所有的 `composition-api` 
 統一從 `composable/index.js` 當 entry point
 
 > `composable` folder 底下可以有多個 composition-api，在從`composable/index.js` 引入給 component 使用
+
+`container.vue` 做為最後被別的 component import 的 entry point，以及將 `useInit` 的資料 用 props 的方式給 `index.vue`
 
 
 ```
