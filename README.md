@@ -27,26 +27,31 @@ composable -> 💡 共用 composition api
 │   │   └── index.js
 │   └── utils
 │       └── index.js
-├── useReducer -> 💡 類似 react.useReducer
-│   └── index.js
-└── useStateMachine -> 💡 state machine 和 vue/nuxt 街口
+└── useReducer -> 💡 類似 react.useReducer
     └── index.js
+
 ```
 ### `helpers`
 ```
 helpers
 └── stateMachine -> 💡 stateMachine
     ├── core
-    │   ├── createActions
+    │   ├── computedGetters
     │   │   └── index.js
-    │   ├── createGetters
+    │   ├── createActions
     │   │   └── index.js
     │   ├── createMutations
     │   │   └── index.js
-    │   └── createStateMachine
+    │   ├── createStateMachine
+    │   │   └── index.js
+    │   └── index.js
+    ├── nuxt
+    │   ├── index.js
+    │   └── useStateMachine 💡 state machine and nuxt's bridge
     │       └── index.js
     └── utils
-        └── index.js
+        ├── index.js
+        └── index.test.js
 ```
 
 ## `component` & `composition-api` demo
@@ -57,14 +62,13 @@ helpers
 
 
 ```
-components/pages/use-composition-api
+components/pages/home
 ├── composable
 │   └── index.js -> 💡 執行 init function
-├── index.vue
-└── page-name
-    ├── composable
-    │   └── index.js -> 💡 執行 init function
-    └── index.vue
+├── index.vue -> 💡 presentation components
+├── prop-types.js
+└── container.vue -> 💡 container components -> composition api wrapper 
+
 ```
 
 ## `fakers`
