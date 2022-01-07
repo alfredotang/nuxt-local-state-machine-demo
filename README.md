@@ -69,7 +69,8 @@ components/pages/home
 │   └── index.js -> 💡 執行 init function
 ├── index.vue -> 💡 presentation components
 ├── prop-types.js
-└── container.vue -> 💡 container components -> composition api wrapper 
+├── container.vue -> 💡 container components -> composition api wrapper
+└──  childComponents
 
 ```
 
