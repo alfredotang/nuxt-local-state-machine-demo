@@ -1,4 +1,4 @@
-import { useStore, reactive, toRaw, toRef, toRefs, computed, isReactive } from '@nuxtjs/composition-api'
+import { useStore, reactive } from '@nuxtjs/composition-api'
 import createStateMachine from '~/helpers/stateMachine/core'
 
 function useStateMachine({
@@ -9,8 +9,8 @@ function useStateMachine({
 }) {
   const store = useStore()
   const injectContext = {
-    rootGetters: mapVuxRootGettersToReactive(store.getters),
-    rootState: reactive(store.state),
+    rootGetters: store.getters,
+    rootState: store.state,
     rootDispatch: store.dispatch,
   }
 
@@ -28,22 +28,10 @@ function useStateMachine({
 
   const machine = createStateMachine(options, injectOptions)
   const state = reactive(machine.state)
-  const getters = reactive(machine.getters)
+  const getters = machine.getters
   const actions = machine.actions || {}
 
   return { state, getters, actions }
-}
-
-function mapVuxRootGettersToReactive(vuexGetters) {
-  const reactiveRootGetters = new Proxy(
-    {},
-    {
-      get: function (target, prop) {
-        return computed(() => vuexGetters[prop])
-      },
-    }
-  )
-  return reactiveRootGetters
 }
 
 export { useStateMachine }
