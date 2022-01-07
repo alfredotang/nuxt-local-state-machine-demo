@@ -8,7 +8,7 @@ class CreateMethods {
   init() {
     this._context.getters = this
     this._methods.forEach(method => {
-      this[method] = (() => this._initialGetters[method]({ ...this._context }))()
+      this[method] = () => this._initialGetters[method]({ ...this._context })
     })
   }
 
