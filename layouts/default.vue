@@ -1,10 +1,5 @@
 <template>
   <div>
-    <header class="header">
-      <NuxtLink to="/">use-vuex</NuxtLink>
-      <NuxtLink to="/use-composition-api">use-composition-api</NuxtLink>
-      <NuxtLink to="/use-local-state-machine">use-local-state-machine</NuxtLink>
-    </header>
     <main class="content">
       <Nuxt />
     </main>

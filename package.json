@@ -18,7 +18,8 @@
     "immer": "^9.0.7",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vue-types": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",

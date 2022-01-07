@@ -1,15 +1,12 @@
 <template>
-  <div>
-    <home-page />
-  </div>
+  <home />
 </template>
 
 <script>
-  import HomePage from '~/components/pages/use-vuex'
-
+  import Home from '~/components/pages/home/container'
   export default {
     components: {
-      HomePage
+      Home
     }
   }
 </script>
