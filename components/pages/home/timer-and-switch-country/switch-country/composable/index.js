@@ -1,10 +1,6 @@
 import { scope } from '~/components/pages/home/composable'
 import { useScope } from '~/composable'
 
-const useInit = () => {
-  const pagesHomeScopeValues = useScope(scope)
-
-  return { ...pagesHomeScopeValues }
-}
+const useInit = () => useScope(scope)
 
 export default useInit
