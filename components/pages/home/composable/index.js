@@ -60,9 +60,9 @@ const useInit = () => {
   })
 
   // 註冊 scope 讓 child 都可以用到
-  useProvider(scope, { ...machine })
+  useProvider(scope, machine)
 
-  return { ...machine }
+  return machine
 }
 
 export default useInit

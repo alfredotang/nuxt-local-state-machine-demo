@@ -12,9 +12,9 @@
     },
     setup() {
       const { getters } = useInit()
-      const pageName = computed(() => getters.pageName())
-      const countryData = computed(() => getters.countryData())
-      const timer = computed(() => getters.timer())
+      const pageName = computed(getters.pageName)
+      const countryData = computed(getters.countryData)
+      const timer = computed(getters.timer)
 
       return { pageName, countryData, timer }
     }
