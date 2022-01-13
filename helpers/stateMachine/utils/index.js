@@ -51,9 +51,4 @@ function isEmptyObject(obj) {
   return false
 }
 
-function omit(obj, key) {
-  const { [key]: omitted, ...rest } = obj
-  return rest
-}
-
-export { omit, isEmptyObject, isGlobalStoreMethod, mappingInjectContext, mappingContext, mappingVuexContext }
+export { isEmptyObject, isGlobalStoreMethod, mappingInjectContext, mappingContext, mappingVuexContext }

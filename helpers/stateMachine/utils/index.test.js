@@ -8,26 +8,6 @@ import {
 } from '~/helpers/stateMachine/utils'
 
 describe('state machine utils', () => {
-  describe('omit', () => {
-    const object = {
-      a: 1,
-      b: 2,
-    }
-    it('omit key in object', () => {
-      const expectResult = { b: 2 }
-      expect(omit(object, 'a')).toEqual(expectResult)
-    })
-
-    it('omit key not in object', () => {
-      const expectResult = {
-        a: 1,
-        b: 2,
-      }
-
-      expect(omit(object, 'c')).toEqual(expectResult)
-    })
-  })
-
   describe('isEmptyObject', () => {
     describe('object is empty or not exist', () => {
       it('object is empty', () => {
