@@ -1,12 +1,12 @@
 import { useStore, reactive } from '@nuxtjs/composition-api'
 import createStateMachine from '~/helpers/stateMachine/core'
 
-function useStateMachine({
+const useStateMachine = ({
   state: initialState,
   getters: initialGetters = {},
   actions: initialActions = {},
   mutations: initialMutations = {},
-}) {
+}) => {
   const store = useStore()
   const injectContext = {
     rootGetters: store.getters,

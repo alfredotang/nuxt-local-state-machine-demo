@@ -1,18 +1,15 @@
-import { isGlobalStoreMethod, isEmptyObject, mappingContext } from '~/helpers/stateMachine/utils'
+import { isEmptyObject, mappingContext } from '~/helpers/stateMachine/utils'
 
-function createActionsDispatch(actions, context) {
-  const { rootDispatch } = context
-
+const createActionsDispatch = (actions, context) => {
   return (name, payload) => {
-    if (isGlobalStoreMethod(name) && !isEmptyObject(context?.rootDispatch)) {
-      return rootDispatch(name, payload)
-    }
+    if (!actions[name])
+      throw new Error(`ActionsError: '${name}' is not defined on actions, maybe you can use 'rootDispatch'`)
 
     return actions[name](context, payload)
   }
 }
 
-function createActions({ initialActions, baseContext, injectOptions }) {
+const createActions = ({ initialActions, baseContext, injectOptions }) => {
   if (isEmptyObject(initialActions)) {
     return { actions: null }
   }

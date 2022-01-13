@@ -1,7 +1,7 @@
 /**
  * @param {string} target actions | getters
  */
-function mappingContext({ target, baseContext, injectOptions = {} }) {
+const mappingContext = ({ target, baseContext, injectOptions = {} }) => {
   const injectContext = mappingInjectContext(injectOptions || {})
 
   return {
@@ -10,7 +10,7 @@ function mappingContext({ target, baseContext, injectOptions = {} }) {
   }
 }
 
-function mappingInjectContext({ contextFrom, injectContext }) {
+const mappingInjectContext = ({ contextFrom, injectContext }) => {
   const injectContextDictionary = { vuex: {} }
   const injectContextDictionaryKey = Object.keys(injectContextDictionary)
   if (!contextFrom || !injectContextDictionaryKey.includes(contextFrom)) return {}
@@ -21,7 +21,7 @@ function mappingInjectContext({ contextFrom, injectContext }) {
   return injectContextDictionary[contextFrom]
 }
 
-function mappingVuexContext(injectContext) {
+const mappingVuexContext = injectContext => {
   const { rootState, rootGetters, rootDispatch } = injectContext || {}
 
   const commonInjectContext = {
@@ -40,12 +40,12 @@ function mappingVuexContext(injectContext) {
   }
 }
 
-function isGlobalStoreMethod(name) {
+const isGlobalStoreMethod = name => {
   const vuexNameSpaceSymbol = new RegExp('/', 'gi')
   return vuexNameSpaceSymbol.test(name)
 }
 
-function isEmptyObject(obj) {
+const isEmptyObject = obj => {
   if (!obj) return true
   if (Object.keys(obj).length === 0) return true
   return false

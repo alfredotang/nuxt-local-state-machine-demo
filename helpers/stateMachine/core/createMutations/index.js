@@ -2,7 +2,7 @@ import { produce } from 'immer'
 import { isEmptyObject } from '~/helpers/stateMachine/utils'
 import computedGetters from '~/helpers/stateMachine/core/computedGetters'
 
-function createNextState(initialState, mutations, action) {
+const createNextState = (initialState, mutations, action) => {
   if (!action) return produce(initialState, () => {})
   const mutationKeys = Object.keys(mutations)
   if (!mutationKeys.includes(action.type)) throw new Error(`'commit': ${action.type} is not defined`)
@@ -14,7 +14,7 @@ function createNextState(initialState, mutations, action) {
   return nextState
 }
 
-function createMutations({ initialState, initialMutations, initialGetters, injectOptions }) {
+const createMutations = ({ initialState, initialMutations, initialGetters, injectOptions }) => {
   const stateKeys = Object.keys(initialState)
   const state = { ...initialState }
   const getterKeys = Object.keys(initialGetters)
@@ -22,14 +22,14 @@ function createMutations({ initialState, initialMutations, initialGetters, injec
   if (isEmptyObject(initialMutations)) {
     return {
       state: initialState,
-      commit: function () {
+      commit: () => {
         throw new Error(`must be created mutations first`)
       },
       getters,
     }
   }
 
-  function commit(type, payload = null) {
+  const commit = (type, payload = null) => {
     const nextState = createNextState(state, initialMutations, { type, payload })
     stateKeys.forEach(key => {
       state[key] = nextState[key]

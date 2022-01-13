@@ -17,7 +17,7 @@ class CreateMethods {
   }
 }
 
-function computedGetters({ initialGetters, baseContext, injectOptions }) {
+const computedGetters = ({ initialGetters, baseContext, injectOptions }) => {
   if (isEmptyObject(initialGetters)) {
     return { getter: {} }
   }

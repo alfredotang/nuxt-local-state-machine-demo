@@ -6,7 +6,7 @@ import createActions from '~/helpers/stateMachine/core/createActions'
  * @param options { initialState, initialActions, initialMutations, initialGetters }
  * @param injectOptions { contextFrom, injectContext }
  */
-function createStateMachine(options, injectOptions = {}) {
+const createStateMachine = (options, injectOptions = {}) => {
   const { initialState, initialActions = {}, initialMutations = {}, initialGetters = {} } = options
 
   if (isEmptyObject(initialState)) throw new Error(`'state' is a required option for createStateMachine`)
