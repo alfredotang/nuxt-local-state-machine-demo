@@ -67,10 +67,15 @@ helpers
 components/pages/home
 ├── composable
 │   └── index.js -> 💡 執行 init function
-├── index.vue -> 💡 presentation components
+├── pureComponent.vue -> 💡 presentation components
 ├── prop-types.js
-├── container.vue -> 💡 container components -> composition api wrapper
+├── index.vue -> 💡 container components -> composition api wrapper
 └──  childComponents
+    ├── composable
+    │   └── index.js
+    ├── index.vue
+    ├── prop-types.js
+    └── pureComponent.vue
 
 ```
 
