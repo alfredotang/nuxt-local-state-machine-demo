@@ -21,7 +21,7 @@ const createMutations = ({ initialState, initialMutations, initialGetters, injec
   const { getters } = computedGetters({ initialGetters, baseContext: { state }, injectOptions })
   if (isEmptyObject(initialMutations)) {
     return {
-      state: initialState,
+      state,
       commit: () => {
         throw new Error(`must be created mutations first`)
       },
