@@ -4,7 +4,7 @@ const createActionsDispatch = (actions, context) => {
   return (name, payload) => {
     if (!actions[name]) throw new Error(`ActionsError: '${name}' is not defined on actions`)
 
-    return actions[name](context, payload)
+    return actions[name]({ ...context, dispatch: createActionsDispatch(actions, context) }, payload)
   }
 }
 
