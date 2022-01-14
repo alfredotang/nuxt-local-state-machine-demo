@@ -1,22 +1,24 @@
 <template>
   <div>
-    <div>timer: {{ timer }}</div>
     <div>
-      <switch-country />
+      <timer-and-switch-country :timer="timer" />
     </div>
   </div>
 </template>
 
 <script>
-  import props from './prop-types'
-  import SwitchCountry from '~/components/pages/home/timer-and-switch-country/switch-country/container'
+  import { computed } from '@nuxtjs/composition-api'
+  import TimerAndSwitchCountry from '~/components/pages/home/timer-and-switch-country/pureComponent'
+  import useInit from './composable'
 
-  export default {
-    components: {
-      SwitchCountry
-    },
-    props: {
-      timer: props.timer,
+    export default {
+      components: {
+        TimerAndSwitchCountry
+      },
+      setup() {
+        const { getters } = useInit()
+        const timer = computed(getters.timer)
+        return { timer }
+      }
     }
-  }
 </script>

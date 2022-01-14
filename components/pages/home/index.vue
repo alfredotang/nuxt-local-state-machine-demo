@@ -1,27 +1,22 @@
 <template>
-  <div>
-    <div>
-      <timer-and-switch-country />
-    </div>
-    <page-block :pageName="pageName" :data="countryData" />
-  </div>
+  <home :pageName="pageName" :countryData="countryData" />
 </template>
-
 <script>
-  import props from './prop-types'
-  import PageBlock from '~/components/common/page-block'
-  import TimerAndSwitchCountry from '~/components/pages/home/timer-and-switch-country/container'
+  import { computed } from '@nuxtjs/composition-api'
+  import Home from '~/components/pages/home/pureComponent'
+  import useInit from './composable'
 
+  export default {
+    components: {
+      Home
+    },
+    setup() {
+      const { getters } = useInit()
+      const pageName = computed(getters.pageName)
+      const countryData = computed(getters.countryData)
+      const timer = computed(getters.timer)
 
-    export default {
-      components: {
-        PageBlock,
-        TimerAndSwitchCountry
-      },
-      props: {
-        pageName: props.pageName,
-        countryData: props.countryData,
-        timer: props.timer,
-      }
+      return { pageName, countryData, timer }
     }
+  }
 </script>

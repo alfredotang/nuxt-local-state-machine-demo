@@ -1,22 +1,21 @@
 <template>
-  <div>
-    <p>country: {{ country }}</p>
-    <button @click="onSwitchCountry">switchCountry</button>
-  </div>
+  <switch-country :country="country" @onSwitchCountry="switchCountry" />
 </template>
 
 <script>
-  import props from './prop-types'
+  import { computed } from '@nuxtjs/composition-api'
+  import SwitchCountry from '~/components/pages/home/timer-and-switch-country/switch-country/pureComponent'
+  import useInit from './composable'
 
   export default {
-    props: {
-      country: props.country,
+    components: {
+      SwitchCountry
     },
-    setup(p, { emit }) {
-      const onSwitchCountry = () => {
-        emit('onSwitchCountry', 'en')
-      }
-      return { onSwitchCountry }
+    setup() {
+      const { actions, getters } = useInit()
+      const country = computed(getters.country)
+      const { switchCountry } = actions
+      return { switchCountry, country }
     }
   }
 </script>
