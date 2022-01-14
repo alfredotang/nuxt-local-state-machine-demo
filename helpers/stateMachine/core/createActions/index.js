@@ -2,8 +2,7 @@ import { isEmptyObject, mappingContext } from '~/helpers/stateMachine/utils'
 
 const createActionsDispatch = (actions, context) => {
   return (name, payload) => {
-    if (!actions[name])
-      throw new Error(`ActionsError: '${name}' is not defined on actions, maybe you can use 'rootDispatch'`)
+    if (!actions[name]) throw new Error(`ActionsError: '${name}' is not defined on actions`)
 
     return actions[name](context, payload)
   }
