@@ -60,7 +60,7 @@ helpers
 
 > `composable` folder 底下可以有多個 composition-api，在從`composable/index.js` 引入給 component 使用
 
-`container.vue` 做為最後被別的 component import 的 entry point，以及將 `useInit` 的資料 用 props 的方式給 `index.vue`
+`index.vue` 做為最後被別的 component import 的 entry point，以及將 `useInit` 的資料 用 props 的方式給 `pureComponent.vue`
 
 
 ```
