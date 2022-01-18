@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>country: {{ country }}</p>
-    <button @click="onSwitchCountry">switchCountry</button>
+    <button @click="onChangeCountry">switchCountry</button>
   </div>
 </template>
 
@@ -11,12 +11,13 @@
   export default {
     props: {
       country: props.country,
+      onSwitchCountry: props.onSwitchCountry
     },
     setup(p, { emit }) {
-      const onSwitchCountry = () => {
+      const onChangeCountry = () => {
         emit('onSwitchCountry')
       }
-      return { onSwitchCountry }
+      return { onChangeCountry }
     }
   }
 </script>
