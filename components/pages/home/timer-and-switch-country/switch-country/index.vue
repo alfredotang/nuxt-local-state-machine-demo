@@ -1,5 +1,5 @@
 <template>
-  <switch-country :country="country" @onSwitchCountry="switchCountry" />
+  <switch-country :country="country" @onSwitchCountry="onSwitchCountry" />
 </template>
 
 <script>
@@ -15,7 +15,10 @@
       const { actions, getters } = useInit()
       const country = computed(getters.country)
       const { switchCountry } = actions
-      return { switchCountry, country }
+      const onSwitchCountry = () => {
+        switchCountry('en')
+      }
+      return { onSwitchCountry, country }
     }
   }
 </script>

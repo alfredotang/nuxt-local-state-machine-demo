@@ -14,7 +14,7 @@
     },
     setup(p, { emit }) {
       const onSwitchCountry = () => {
-        emit('onSwitchCountry', 'en')
+        emit('onSwitchCountry')
       }
       return { onSwitchCountry }
     }

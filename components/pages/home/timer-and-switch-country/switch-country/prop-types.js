@@ -1,5 +1,6 @@
-import { string } from 'vue-types'
+import { string, func } from 'vue-types'
 
 export default {
   country: string().isRequired,
+  onSwitchCountry: func().isRequired,
 }
