@@ -51,4 +51,16 @@ const isEmptyObject = obj => {
   return false
 }
 
-export { isEmptyObject, isGlobalStoreMethod, mappingInjectContext, mappingContext, mappingVuexContext }
+const connectContext = (method, context) => {
+  if (isEmptyObject(method)) return {}
+  const result = {}
+  const keys = Object.keys(method)
+  keys.forEach(key => {
+    if (typeof method[key] !== 'function') return
+    result[key] = method[key].bind(context)
+  })
+
+  return result
+}
+
+export { isEmptyObject, isGlobalStoreMethod, mappingInjectContext, mappingContext, mappingVuexContext, connectContext }
