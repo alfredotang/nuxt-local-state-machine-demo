@@ -1,5 +1,6 @@
 import { useStore, reactive } from '@nuxtjs/composition-api'
 import createStateMachine from '~/helpers/stateMachine/core'
+import { connectContext } from './utils'
 
 const useStateMachine = ({
   state: initialState,
@@ -17,7 +18,7 @@ const useStateMachine = ({
   const options = {
     initialState: initialState(),
     initialGetters,
-    initialActions,
+    initialActions: connectContext(initialActions, store),
     initialMutations,
   }
 
