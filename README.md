@@ -60,14 +60,14 @@ helpers
 
 > `composable` folder 底下可以有多個 composition-api，在從`composable/index.js` 引入給 component 使用
 
-`index.vue` 做為最後被別的 component import 的 entry point，以及將 `useInit` 的資料 用 props 的方式給 `pureComponent.vue`
+`index.vue` 做為最後被別的 component import 的 entry point，以及將 `useInit` 的資料 用 props 的方式給 `pure-component.vue`
 
 
 ```
 components/pages/home
 ├── composable
 │   └── index.js -> 💡 執行 init function
-├── pureComponent.vue -> 💡 presentation components
+├── pure-component.vue -> 💡 presentation components
 ├── prop-types.js
 ├── index.vue -> 💡 container components -> composition api wrapper
 └──  childComponents
@@ -75,7 +75,7 @@ components/pages/home
     │   └── index.js
     ├── index.vue
     ├── prop-types.js
-    └── pureComponent.vue
+    └── pure-component.vue
 
 ```
 
