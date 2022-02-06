@@ -38,6 +38,24 @@ export const actions = {
     const timer = getters.timers()
     dispatch('setPageName', timer)
   },
+  step1({ dispatch }) {
+    dispatch('switchCountry', 'en')
+  },
+  step2({ dispatch }) {
+    dispatch('step1')
+  },
+  step3({ dispatch }) {
+    dispatch('step2')
+  },
+  step4({ dispatch }) {
+    dispatch('step3')
+  },
+  step5({ dispatch }) {
+    dispatch('step4')
+  },
+  stepFinal({ dispatch }) {
+    dispatch('step5')
+  },
 }
 
 export const getters = {

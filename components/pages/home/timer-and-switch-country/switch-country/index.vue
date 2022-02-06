@@ -4,7 +4,7 @@
 
 <script>
   import { computed } from '@nuxtjs/composition-api'
-  import SwitchCountry from '~/components/pages/home/timer-and-switch-country/switch-country/pureComponent'
+  import SwitchCountry from '~/components/pages/home/timer-and-switch-country/switch-country/pure-component'
   import useInit from './composable'
 
   export default {
@@ -14,9 +14,10 @@
     setup() {
       const { actions, getters } = useInit()
       const country = computed(getters.country)
-      const { switchCountry } = actions
+      const { switchCountry, stepFinal } = actions
       const onSwitchCountry = () => {
-        switchCountry('en')
+        // switchCountry('en')
+        stepFinal()
       }
       return { onSwitchCountry, country }
     }

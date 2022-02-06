@@ -3,7 +3,7 @@
 </template>
 <script>
   import { computed } from '@nuxtjs/composition-api'
-  import Home from '~/components/pages/home/pureComponent'
+  import Home from '~/components/pages/home/pure-component'
   import useInit from './composable'
 
   export default {

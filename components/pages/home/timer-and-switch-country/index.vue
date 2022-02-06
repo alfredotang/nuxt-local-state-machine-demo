@@ -8,7 +8,7 @@
 
 <script>
   import { computed } from '@nuxtjs/composition-api'
-  import TimerAndSwitchCountry from '~/components/pages/home/timer-and-switch-country/pureComponent'
+  import TimerAndSwitchCountry from '~/components/pages/home/timer-and-switch-country/pure-component'
   import useInit from './composable'
 
     export default {
