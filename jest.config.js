@@ -8,6 +8,7 @@ module.exports = {
   resetMocks: false,
   transform: {
     '^.+.js$': 'babel-jest',
+    '.*\\.(vue)$': 'vue-jest',
   },
   verbose: true,
 }

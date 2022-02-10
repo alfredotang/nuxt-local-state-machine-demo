@@ -31,7 +31,9 @@
     "@nuxt/types": "^2.15.7",
     "@types/lodash": "^4.14.178",
     "@types/moment": "^2.13.0",
+    "@vue/test-utils": "^2.0.0-rc.17",
     "babel-jest": "^27.4.5",
-    "jest": "^27.4.5"
+    "jest": "^27.4.5",
+    "vue-jest": "^3.0.7"
   }
 }
