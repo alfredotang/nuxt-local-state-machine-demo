@@ -1,8 +1,7 @@
-import { useStateMachine } from '~/helpers/stateMachine/nuxt'
 import faker3 from '~/fakers/faker3'
 import faker4 from '~/fakers/faker4'
 import { getTime } from '~/components/pages/home/composable/utils'
-import { useProvider } from '~/composable'
+import { useProvider, useStateMachine } from '~/composable'
 
 export const state = () => ({
   countryDataMap: {

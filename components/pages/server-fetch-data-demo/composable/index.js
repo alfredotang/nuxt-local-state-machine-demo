@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { useFetch } from '@nuxtjs/composition-api'
 import { api } from '~/services'
-import { useStateMachine } from '~/helpers/stateMachine/nuxt'
-import { useProvider } from '~/composable'
+import { useProvider, useStateMachine } from '~/composable'
 
 // https://fakestoreapi.com/docs
 export const state = () => ({
