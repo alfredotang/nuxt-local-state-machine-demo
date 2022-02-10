@@ -17,17 +17,19 @@ $ yarn analyze
 
 
 ### `composable`
+folder or file name should be `kebab-case`
+
 ```
 composable -> 💡 共用 composition api
 ├── index.js
 ├── scope
-│   ├── useProvider -> 💡 類似 react.createContext
+│   ├── use-provider -> 💡 similar react.createContext
 │   │   └── index.js
-│   ├── useScope -> 💡 類似 react.useContext
+│   ├── use-scope -> 💡 similar react.useContext
 │   │   └── index.js
 │   └── utils
 │       └── index.js
-└── useReducer -> 💡 類似 react.useReducer
+└── use-state-machine -> 💡 state machine and nuxt's bridge
     └── index.js
 
 ```
@@ -45,10 +47,6 @@ helpers
     │   ├── createStateMachine
     │   │   └── index.js
     │   └── index.js
-    ├── nuxt
-    │   ├── index.js
-    │   └── useStateMachine 💡 state machine and nuxt's bridge
-    │       └── index.js
     └── utils
         ├── index.js
         └── index.test.js
@@ -60,22 +58,20 @@ helpers
 
 > `composable` folder 底下可以有多個 composition-api，在從`composable/index.js` 引入給 component 使用
 
-`index.vue` 做為最後被別的 component import 的 entry point，以及將 `useInit` 的資料 用 props 的方式給 `pure-component.vue`
+`index.vue` 做為最後被別的 component import 的 entry point 
 
 
 ```
 components/pages/home
 ├── composable
-│   └── index.js -> 💡 執行 init function
-├── pure-component.vue -> 💡 presentation components
-├── prop-types.js
-├── index.vue -> 💡 container components -> composition api wrapper
-└──  childComponents
+│   ├── index.js -> 💡 執行 init function
+│   └── index.test.js -> composition-api test
+├── index.vue -> 💡 setup composition-api (execute composable/index.js)
+└──  [your-child-components]
     ├── composable
-    │   └── index.js
-    ├── index.vue
-    ├── prop-types.js
-    └── pure-component.vue
+    │   ├── index.js
+    │   └── index.test.js
+    └── index.vue
 
 ```
 
