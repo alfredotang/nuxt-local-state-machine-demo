@@ -1,19 +1,20 @@
 <template>
   <div>
+    <div>timer: {{ timer }}</div>
     <div>
-      <timer-and-switch-country :timer="timer" />
+      <switch-country />
     </div>
   </div>
 </template>
 
 <script>
   import { computed } from '@nuxtjs/composition-api'
-  import TimerAndSwitchCountry from '~/components/pages/home/timer-and-switch-country/pure-component'
+  import SwitchCountry from '~/components/pages/home/timer-and-switch-country/switch-country'
   import useInit from './composable'
 
     export default {
       components: {
-        TimerAndSwitchCountry
+        SwitchCountry
       },
       setup() {
         const { getters } = useInit()

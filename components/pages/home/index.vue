@@ -1,14 +1,21 @@
 <template>
-  <home :pageName="pageName" :countryData="countryData" />
+  <div>
+    <div>
+      <timer-and-switch-country />
+    </div>
+    <page-block :pageName="pageName" :data="countryData" />
+  </div>
 </template>
 <script>
   import { computed } from '@nuxtjs/composition-api'
-  import Home from '~/components/pages/home/pure-component'
   import useInit from './composable'
+  import PageBlock from '~/components/common/page-block'
+  import TimerAndSwitchCountry from '~/components/pages/home/timer-and-switch-country'
 
   export default {
     components: {
-      Home
+      PageBlock,
+      TimerAndSwitchCountry,
     },
     setup() {
       const { getters } = useInit()
