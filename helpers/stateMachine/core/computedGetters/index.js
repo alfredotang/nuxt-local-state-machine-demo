@@ -8,7 +8,32 @@ class CreateMethods {
   init() {
     this._context.getters = this
     this._methods.forEach(method => {
-      this[method] = () => this._initialGetters[method]({ ...this._context })
+      this[method] = this._initialGetters[method]({ ...this._context })
+    })
+  }
+
+  get _methods() {
+    return Object.keys(this._initialGetters)
+  }
+}
+
+class CreateMethodsV2 {
+  constructor(initialGetters, context) {
+    this._context = context
+    this._initialGetters = initialGetters
+    this.init()
+  }
+  init() {
+    this._context.getters = this
+    this._methods.forEach(method => {
+      Object.defineProperty(this, method, {
+        get() {
+          return this._initialGetters[method](this._context)
+        },
+        set(value) {
+          return value
+        },
+      })
     })
   }
 
@@ -24,7 +49,7 @@ const computedGetters = ({ initialGetters, baseContext, injectOptions }) => {
 
   const context = mappingContext({ target: 'getters', baseContext, injectOptions })
 
-  const getters = new CreateMethods(initialGetters, context)
+  const getters = new CreateMethodsV2(initialGetters, context)
 
   return { getters }
 }
