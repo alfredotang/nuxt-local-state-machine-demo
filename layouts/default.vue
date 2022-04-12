@@ -1,15 +1,33 @@
 <template>
-  <div>
-    <header class="header">
-      <nuxt-link to="/">home</nuxt-link>
-      <nuxt-link to="/sfd">server fetch data demo</nuxt-link>
+  <div class="bg-gray-100">
+    <header class="header w-full fixed top-0 flex justify-center p-3 shadow-md">
+      <nav class="flex space-x-4">
+        <nuxt-link v-for="route in routes" :key="route.name" :to="route.path">{{ route.name }}</nuxt-link>
+      </nav>
     </header>
-    <main class="content">
+    <main class="p-20">
       <Nuxt />
     </main>
   </div>
 </template>
-
+<script>
+  export default {
+    computed: {
+      routes() {
+        return [
+          {
+            name: 'home',
+            path: '/',
+          },
+          {
+            name: 'server fetch data demo',
+            path: '/sfd',
+          }
+        ]
+      }
+    }
+  }
+</script>
 <style>
   :root {
     --space: 8px;
@@ -36,20 +54,9 @@
 </style>
 
 <style>
-  .content {
-    padding: 2rem;
-  }
 
-  .content .list {
-    margin: var(--space-1);
-    padding: 1rem;
-  }
-
-  .content .list .list-item {
-    text-decoration: none;
-    margin: var(--space-2);
-    list-style: none;
-    border-bottom: 1px solid grey;
+  .header {
+    backdrop-filter: blur(5px)
   }
 
 
@@ -60,7 +67,6 @@
     background-color: var(--primary);
     border-radius: 4px;
     display: inline-block;
-    font-size: 16px;
   }
 
   .header a:hover, button:hover {
