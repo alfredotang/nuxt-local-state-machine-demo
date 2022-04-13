@@ -1,6 +1,6 @@
 import { mappingContext, isEmptyObject } from '~/helpers/stateMachine/utils'
 
-export class StateMachine {
+export class CreateStateMachine {
   constructor(options, injectOptions) {
     this._initialState = options.initialState || {}
     this._initialActions = options.initialActions || {}
@@ -8,6 +8,7 @@ export class StateMachine {
     this._initialGetters = options.initialGetters || {}
     this._injectOptions = injectOptions || {}
     this._commit = this._commit.bind(this)
+    this._dispatch = this._dispatch.bind(this)
   }
 
   _commit(type, payload) {
@@ -68,7 +69,7 @@ class ComputedGetters {
     this._methods.forEach(method => {
       Object.defineProperty(this, method, {
         get() {
-          return this._initialGetters[method](this._context)
+          return () => this._initialGetters[method](this._context)
         },
         set(value) {
           return value

@@ -13,9 +13,8 @@
     setup() {
       const { actions, getters } = useInit()
       const country = computed(getters.country)
-      const { switchCountry, stepFinal } = actions
+      const { stepFinal } = actions
       const onSwitchCountry = () => {
-        // switchCountry('en')
         stepFinal()
       }
       return { onSwitchCountry, country }

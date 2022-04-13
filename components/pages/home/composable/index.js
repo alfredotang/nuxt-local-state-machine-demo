@@ -10,6 +10,7 @@ export const state = () => ({
   },
   timer: getTime(new Date()),
   pageName: 'home',
+  country: 'tw',
 })
 
 export const mutations = {
@@ -18,6 +19,9 @@ export const mutations = {
   },
   SET_PAGE_NAME(state, payload) {
     state.pageName = payload
+  },
+  SET_COUNTRY(state, payload) {
+    state.country = payload
   },
 }
 
@@ -28,17 +32,18 @@ export const actions = {
   setPageName({ commit }, payload) {
     commit('SET_PAGE_NAME', payload)
   },
-  switchCountry({ rootDispatch }, payload) {
-    // rootDispatch === vuex.store.dispatch
-    rootDispatch('setting/switchCountry', payload)
+  switchCountry({ commit }, payload) {
+    commit('SET_COUNTRY', payload)
   },
   async setPageNameToTimer({ dispatch, getters }) {
     await dispatch('setTimerToNow')
     const timer = getters.timers()
     dispatch('setPageName', timer)
   },
-  step1({ dispatch }) {
-    dispatch('switchCountry', 'en')
+  step1({ dispatch, getters }) {
+    const country = getters.country()
+    const payload = country === 'tw' ? 'en' : 'tw'
+    dispatch('switchCountry', payload)
   },
   step2({ dispatch }) {
     dispatch('step1')
@@ -61,7 +66,7 @@ export const getters = {
   fakeData: ({ state }) => state.fakeData,
   timer: ({ state }) => state.timer,
   // rootGetters === vuex.store.getters
-  country: ({ rootGetters }) => rootGetters['setting/country'],
+  country: ({ state }) => state.country,
   countryData: ({ state, getters }) => state.countryDataMap[getters.country()],
   pageName: ({ state }) => state.pageName,
 }

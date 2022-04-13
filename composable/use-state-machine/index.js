@@ -1,5 +1,5 @@
 import { useStore, reactive } from '@nuxtjs/composition-api'
-import createStateMachine, { StateMachine } from '~/helpers/stateMachine/core'
+import createStateMachine, { CreateStateMachineV2 } from '~/helpers/stateMachine/core'
 import { connectContext } from '~/helpers/stateMachine/utils'
 
 const useStateMachine = ({
@@ -27,7 +27,7 @@ const useStateMachine = ({
     contextFrom: 'vuex',
   }
 
-  const machine = new StateMachine(options, injectOptions)
+  const machine = new CreateStateMachineV2(options, injectOptions)
   const state = reactive(machine.state)
   const getters = machine.getters
   const actions = machine.actions || {}
