@@ -15,7 +15,7 @@
   export default {
     setup() {
       const { getters } = useInit()
-      const products = computed(getters.products)
+      const products = computed(() => getters.products)
       return { products }
     }
   }

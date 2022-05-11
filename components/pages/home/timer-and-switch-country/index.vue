@@ -18,7 +18,7 @@
       },
       setup() {
         const { getters } = useInit()
-        const timer = computed(getters.timer)
+        const timer = computed(() => getters.timer)
         return { timer }
       }
     }

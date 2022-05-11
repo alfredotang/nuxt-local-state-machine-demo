@@ -12,7 +12,7 @@
   export default {
     setup() {
       const { actions, getters } = useInit()
-      const country = computed(getters.country)
+      const country = computed(() => getters.country)
       const { stepFinal } = actions
       const onSwitchCountry = () => {
         stepFinal()

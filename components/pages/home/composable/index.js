@@ -37,11 +37,13 @@ export const actions = {
   },
   async setPageNameToTimer({ dispatch, getters }) {
     await dispatch('setTimerToNow')
-    const timer = getters.timers()
+    const timer = getters.timers
     dispatch('setPageName', timer)
   },
-  step1({ dispatch, getters }) {
-    const country = getters.country()
+  step1(context) {
+    console.log({ context })
+    const { dispatch, getters } = context
+    const country = getters.country
     const payload = country === 'tw' ? 'en' : 'tw'
     dispatch('switchCountry', payload)
   },
@@ -63,12 +65,33 @@ export const actions = {
 }
 
 export const getters = {
-  fakeData: ({ state }) => state.fakeData,
+  fakeData: ({ state }) => state.fakeData.a,
   timer: ({ state }) => state.timer,
   // rootGetters === vuex.store.getters
   country: ({ state }) => state.country,
-  countryData: ({ state, getters }) => state.countryDataMap[getters.country()],
+  countryData: ({ state, getters }) => state.countryDataMap[getters.country],
   pageName: ({ state }) => state.pageName,
+  locale: ({ rootGetters }) => rootGetters['setting/locale'],
+  errorCode: ({ rootGetters }) => rootGetters['settings/errorCode'],
+  getVersion: ({ rootGetters }) => rootGetters['settings/getVersion'],
+  step1() {
+    return 'step'
+  },
+  step2({ getters }) {
+    return getters.step1
+  },
+  step3({ getters }) {
+    return getters.step2
+  },
+  step4({ getters }) {
+    return getters.step3
+  },
+  step5({ getters }) {
+    return getters.step4
+  },
+  stepFinal({ getters }) {
+    return getters.step5
+  },
 }
 
 export const scope = 'pages/home'
